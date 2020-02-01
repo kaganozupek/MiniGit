@@ -23,7 +23,7 @@ class RepositoryListPresenterTest: BaseTest() {
     @Test
     fun isSearchWorking() {
         repositoryListPreseter = RepositoryListPresenterImpl(SearchService(NetworkManager().api),object : RepositoryView {
-            override fun showError() {
+            override fun showError(message: String) {
             }
 
             override fun hideProgress() {

@@ -9,6 +9,7 @@
         android:layout_marginEnd="10dp"
         android:background="@color/md_amber_500"
         android:id="@+id/etSearch"
+        android:maxLines="1"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         app:layout_constraintTop_toTopOf="parent"
@@ -17,6 +18,7 @@
 
     <ProgressBar
         android:id="@+id/prgs"
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
