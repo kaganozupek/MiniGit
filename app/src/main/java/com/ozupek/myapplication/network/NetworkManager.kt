@@ -4,7 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
-class NetworkManager private constructor() {
+class NetworkManager {
 
     private var retrofit: Retrofit = Retrofit.Builder()
         .baseUrl("https://api.github.com")
@@ -12,18 +12,10 @@ class NetworkManager private constructor() {
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .build()
 
-    private var api: Api
+    var api: Api
 
     init {
         api = retrofit.create(Api::class.java)
-    }
-
-    companion object {
-        private val networkManager = NetworkManager()
-
-        fun getApi(): Api {
-            return networkManager.api
-        }
     }
 
 }

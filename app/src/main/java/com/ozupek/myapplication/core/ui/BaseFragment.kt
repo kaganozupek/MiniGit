@@ -1,4 +1,4 @@
-package com.ozupek.myapplication.ui
+package com.ozupek.myapplication.core.ui
 
 import android.content.Context
 import android.os.Bundle

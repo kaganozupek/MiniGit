@@ -1,7 +1,8 @@
-package com.ozupek.myapplication
+package com.ozupek.myapplication.ui.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.ozupek.myapplication.R
 
 class MainActivity : AppCompatActivity() {
 

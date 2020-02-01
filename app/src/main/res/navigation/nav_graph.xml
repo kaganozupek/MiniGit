@@ -5,6 +5,6 @@
 
     <fragment
         android:id="@+id/repositoryListFragment"
-        android:name="com.ozupek.myapplication.ui.RepositoryListFragment"
+        android:name="com.ozupek.myapplication.ui.repositorylist.RepositoryListFragment"
         android:label="RepositoryListFragment" />
 </navigation>

@@ -1,4 +1,4 @@
-package com.ozupek.myapplication.ui
+package com.ozupek.myapplication.ui.repositorylist
 
 import android.view.LayoutInflater
 import android.view.View
@@ -14,7 +14,9 @@ class RepositoryAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         val view =
             LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_repository, parent, false)
-        return RepositoryViewHolder(view)
+        return RepositoryViewHolder(
+            view
+        )
     }
 
     override fun getItemCount(): Int {

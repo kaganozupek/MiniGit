@@ -1,23 +1,36 @@
-package com.ozupek.myapplication.ui
+package com.ozupek.myapplication.ui.repositorylist
 
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ozupek.myapplication.R
+import com.ozupek.myapplication.core.service.SearchServiceImpl
+import com.ozupek.myapplication.core.ui.BaseFragment
 import com.ozupek.myapplication.network.NetworkManager
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.rxkotlin.addTo
-import io.reactivex.schedulers.Schedulers
+import com.ozupek.myapplication.network.models.RepositoryModel
 import kotlinx.android.synthetic.main.fragment_repository_list.*
 
-class RepositoryListFragment : BaseFragment(R.layout.fragment_repository_list) {
+
+class RepositoryListFragment : BaseFragment(R.layout.fragment_repository_list),
+    RepositoryView {
 
     private var adapter: RepositoryAdapter? = null
+    private lateinit var presenter: RepositoryListPresenter
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        presenter = RepositoryListPresenterImpl(
+            SearchServiceImpl(
+                NetworkManager().api
+            ), this
+        )
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        searchRepository(keyword = "Retrofit")
+        presenter.search("Retrofit")
     }
 
     override fun initViews() {
@@ -28,30 +41,22 @@ class RepositoryListFragment : BaseFragment(R.layout.fragment_repository_list) {
         adapter?.notifyDataSetChanged()
     }
 
-    private fun searchRepository(keyword: String) {
-        showProgress()
-        NetworkManager.getApi().searchRepositories(keyword)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                hideProgress()
-                adapter?.bindData(it.items)
-            }, {
-                hideProgress()
-                showError()
-            }).addTo(compositeDisposable)
-    }
 
-    private fun showError() {
+    override fun showError() {
         Toast.makeText(fragmentContext,"An error occured while fetching data",Toast.LENGTH_LONG).show()
     }
 
-    private fun hideProgress() {
+    override fun hideProgress() {
         prgs.visibility = View.GONE
     }
 
-    private fun showProgress() {
+    override fun showProgress() {
         prgs.visibility = View.VISIBLE
     }
+
+    override fun showSearchResults(it: ArrayList<RepositoryModel>) {
+        adapter?.bindData(it)
+    }
 }
+
 
