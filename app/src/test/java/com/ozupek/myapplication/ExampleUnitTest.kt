@@ -1,8 +1,7 @@
 package com.ozupek.myapplication
 
+import org.junit.Before
 import org.junit.Test
-
-import org.junit.Assert.*
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -10,8 +9,17 @@ import org.junit.Assert.*
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 class ExampleUnitTest {
+
+    lateinit var computation: Computation
+
+    @Before
+    fun setup () {
+        computation = Computation()
+    }
+
     @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+    fun isSumFunctionWorkCorrect() {
+        val result = computation.sum(10,2)
+        assert(result == 12)
     }
 }

@@ -1,4 +1,4 @@
-package com.ozupek.myapplication.network.ui
+package com.ozupek.myapplication.ui
 
 import android.view.LayoutInflater
 import android.view.View
@@ -29,6 +29,11 @@ class RepositoryAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     fun bindData(items: ArrayList<RepositoryModel>) {
         datasource.addAll(items)
+        this.notifyDataSetChanged()
+    }
+
+    fun clearData() {
+        datasource.clear()
         this.notifyDataSetChanged()
     }
 
