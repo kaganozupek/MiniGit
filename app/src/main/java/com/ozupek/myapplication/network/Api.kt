@@ -11,7 +11,7 @@ interface Api {
 
     @GET("/search/repositories")
     fun searchRepositories(@Query("q") keyword: String,
-                           @Query("per_page") perPage: Int = 100,
+                           @Query("per_page") perPage: Int = 20,
                            @Query("page") page: Int = 1
     ): Observable<SearchResponse>
 
